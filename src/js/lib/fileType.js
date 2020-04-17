@@ -21,7 +21,7 @@ export default async function fileType(path: string): Promise<IngestableType> {
 }
 
 async function isZeekJson(file) {
-  for await (let line of firstLines(file, 4)) {
+  for await (let line of firstLines(file, 1)) {
     if (!isJson(line)) return false
   }
   return true
