@@ -24,7 +24,9 @@ jobs:
       # times. See https://github.com/brimsec/brim/pull/590
       run: |
           cachedir=${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          du -sh "${cachedir}" || echo "empty"
           rm -rf "${cachedir:?}"
+          du -sh "${cachedir}" || echo "empty"
       shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
@@ -41,6 +43,7 @@ jobs:
     - run: npm run lint
     - run: npm run flow
     - run: npm test -- --maxWorkers=2 --ci
+    - run: du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
 
   integration_test:
     runs-on: ${{ matrix.os }}
@@ -61,7 +64,9 @@ jobs:
     - name: Clear Extraneous Runner Cache
       run: |
           cachedir=${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          du -sh "${cachedir}" || echo "empty"
           rm -rf "${cachedir:?}"
+          du -sh "${cachedir}" || echo "empty"
       shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
@@ -102,3 +107,4 @@ jobs:
       with:
         name: artifacts-${{ matrix.os }}-node-${{ matrix.node-version }}
         path: /var/tmp/brimsec/itest
+    - run: du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
