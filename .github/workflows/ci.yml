@@ -26,7 +26,6 @@ jobs:
           du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
           rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
           du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
-      shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
       env:
@@ -65,7 +64,6 @@ jobs:
           du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
           rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
           du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
-      shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
       env:
