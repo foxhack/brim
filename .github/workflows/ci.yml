@@ -23,9 +23,9 @@ jobs:
       # Clear it before we create our own cache to prevent slower build
       # times. See https://github.com/brimsec/brim/pull/590
       run: |
-          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
-          rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
-          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
+          rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
       shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
@@ -62,9 +62,9 @@ jobs:
       run: echo "::set-output name=npm_cache_dir::$(npm config get cache)"
     - name: Clear Extraneous Runner Cache
       run: |
-          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
-          rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
-          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
+          rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }} || true
       shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
