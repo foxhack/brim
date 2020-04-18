@@ -31,7 +31,7 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v1
       env:
-        cache-name: cache-node-modules3
+        cache-name: cache-node-modules-ci-v1
       with:
         path: ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
@@ -71,7 +71,7 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v1
       env:
-        cache-name: cache-node-modules3
+        cache-name: cache-node-modules-ci-v1
       with:
         path: ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
