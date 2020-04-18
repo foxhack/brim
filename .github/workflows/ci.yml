@@ -23,15 +23,14 @@ jobs:
       # Clear it before we create our own cache to prevent slower build
       # times. See https://github.com/brimsec/brim/pull/590
       run: |
-          cachedir=${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
-          du -sh "${cachedir}" || echo "empty"
-          rm -rf "${cachedir:?}"
-          du -sh "${cachedir}" || echo "empty"
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
       shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
       env:
-        cache-name: cache-node-modules-ci-v1
+        cache-name: cache-node-modules-ci-v2
       with:
         path: ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
@@ -63,15 +62,14 @@ jobs:
       run: echo "::set-output name=npm_cache_dir::$(npm config get cache)"
     - name: Clear Extraneous Runner Cache
       run: |
-          cachedir=${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
-          du -sh "${cachedir}" || echo "empty"
-          rm -rf "${cachedir:?}"
-          du -sh "${cachedir}" || echo "empty"
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          rm -rf ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
+          du -sh ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
       shell: bash
     - name: Cache node modules
       uses: actions/cache@v1
       env:
-        cache-name: cache-node-modules-ci-v1
+        cache-name: cache-node-modules-ci-v2
       with:
         path: ${{ steps.set-npm-cache-dir.outputs.npm_cache_dir }}
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
